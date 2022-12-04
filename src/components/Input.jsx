@@ -74,11 +74,9 @@ const Input = () => {
     setImg(null);
   };
 
-  const handleEnter = (e) => {
-    if(e.key === 'enter'){
-      handleSend();
-    }
-  }
+  const handleKey = (e) => {
+    e.code === "Enter" && handleSend();
+  };
 
   return (
     <div className="input">
@@ -87,7 +85,7 @@ const Input = () => {
         placeholder="Type something..."
         onChange={(e) => setText(e.target.value)}
         value={text}
-        onKeyPress={handleEnter}
+        onKeyDown={text.length > 0 || img ? handleKey : null}
       />
       <div className="send">
         <input
